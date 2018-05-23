@@ -1,4 +1,7 @@
 <div class="textArea">
   <textarea [(ngModel)]="mainTextArea"></textarea>
   <button (click)="saveText()">Save</button>
+  <br>
+  <input [(ngModel)]="noteID" placeholder="Note ID"><br>
+  <button (click)="getByID()">Get</button>
 </div>

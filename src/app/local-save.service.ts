@@ -7,19 +7,28 @@ export class LocalSaveService {
 
   constructor() { }
 
-  saveToLocalStorage(data){
+  private idGenerator() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+
+  saveToLocalStorage(content, name){
     // This works on all devices/browsers, and uses IndexedDBShim as a final fallback
-    let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+    let indexedDB = window.indexedDB
 
-// Open (or create) the database
-    let open = indexedDB.open("Notes", 1);
+    // Open (or create) the database
+    let open = indexedDB.open("Notes", 1.1);
 
-// Create the schema
+      // Create the schema
     open.onupgradeneeded = function() {
       let db = open.result;
       let store = db.createObjectStore("NotesStore", {keyPath: "id"});
-      let index = store.createIndex("NoteIndex", ["note.content", "note.date"]);
+      let index = store.createIndex("NoteIndex", [ "note.id", "note.title","note.content", "note.date"]);
     };
+
+    //Id generator
+    let id = this.idGenerator();
+
 
     open.onsuccess = function() {
       // Start a new transaction
@@ -28,26 +37,63 @@ export class LocalSaveService {
       let store = tx.objectStore("NotesStore");
       let index = store.index("NoteIndex");
 
-      //Id generator
-      const id = new Date();
-
       // Save the Date
       const date = new Date();
+      let noteObject = {
+        id: id,
+        name: name,
+        content: content,
+        date: date
+      };
+      console.log(noteObject);
 
       // Add some data
-      store.put({id: id, note: {content: data, date: date }});
+      store.put(
+        {
+          id: noteObject.id,
+          note:
+            {
+              id: noteObject.id,
+              name: noteObject.name,
+              content: noteObject.content,
+              date: noteObject.date
+            }
+        }
+        );
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+        db.close();
+      };
+    }
+  }
+
+  getFromLocalStoreageByID(id){
+    // Open (or create) the database
+    let open = indexedDB.open("Notes", 1);
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      let db = open.result;
+      let tx = db.transaction("NotesStore", "readwrite");
+      let store = tx.objectStore("NotesStore");
+      let index = store.index("NoteIndex");
 
       // // Query the data
-      // let getJohn = store.get(12345);
-      // let getBob = index.get(["Smith", "Bob"]);
+      let getNote = store.get(id);
 
-      // getJohn.onsuccess = function() {
-      //   console.log(getJohn.result.name.first);  // => "John"
-      // };
-      //
-      // getBob.onsuccess = function() {
-      //   console.log(getBob.result.name.first);   // => "Bob"
-      // };
+      getNote.onsuccess = function() {
+        if(typeof getNote.result === "undefined"){
+          console.log("Could not find note")
+        }
+        else{
+          console.log(getNote.result.note);
+        }
+      };
+      getNote.onerror = function(){
+        console.log(getNote)
+      };
+
 
       // Close the db when the transaction is done
       tx.oncomplete = function() {
