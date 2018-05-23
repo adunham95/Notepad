@@ -13,8 +13,13 @@ export class TextareaComponent implements OnInit {
   mainTitle = "Title";
   mainTextArea = "Text Area";
   noteID = "";
+  noteArray;
 
   ngOnInit() {
+    let allArray =this.localSave.getAllFromLocalStorage();
+    allArray.then(function (result) {
+      console.log(result)
+    })
   }
 
   saveText(){
@@ -25,8 +30,21 @@ export class TextareaComponent implements OnInit {
     this.localSave.saveToLocalStorage(text, title)
   }
 
+  getAll(){
+    let allArray =this.localSave.getAllFromLocalStorage();
+    allArray.then(function (result) {
+      console.log(result)
+    })
+  }
+
   getByID(){
-    this.localSave.getFromLocalStoreageByID(this.noteID);
+    let note;
+    this.localSave.getFromLocalStorageByID(this.noteID);
+    console.log(note)
+  }
+
+  deleteByID(){
+    this.localSave.deleteFromLocalStorageByID(this.noteID);
   }
 
 }

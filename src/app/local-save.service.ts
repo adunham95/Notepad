@@ -11,10 +11,9 @@ export class LocalSaveService {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
 
-
   saveToLocalStorage(content, name){
     // This works on all devices/browsers, and uses IndexedDBShim as a final fallback
-    let indexedDB = window.indexedDB
+    let indexedDB = window.indexedDB;
 
     // Open (or create) the database
     let open = indexedDB.open("Notes", 1.1);
@@ -66,9 +65,75 @@ export class LocalSaveService {
         db.close();
       };
     }
+
+    open.onerror = function(e){
+      console.log("Error: " + e)
+    };
   }
 
-  getFromLocalStoreageByID(id){
+
+  getAllFromLocalStorage(){
+    console.log("Get All From Local Storage");
+    // Open (or create) the database
+    let open = indexedDB.open("Notes", 1);
+
+    let response ={
+      data: ""
+    };
+
+    return Promise.resolve(() => {
+      return open.onsuccess = function() {
+      // Start a new transaction
+      let db = open.result;
+      let tx = db.transaction("NotesStore", "readwrite");
+      let store = tx.objectStore("NotesStore");
+      let index = store.index("NoteIndex");
+
+      // // Query the data
+      let getNote = store.getAll();
+
+      getNote.onsuccess = function() {
+        if(typeof getNote.result === "undefined"){
+          console.log("Could not find note");
+          response.data = "Could not find note";
+          return {
+            code: "404",
+            status: "Could not find note"
+          }
+        }
+        else{
+          console.log(getNote.result);
+          response.data = getNote.result;
+          return {
+            code: "200",
+            status: "Found Note",
+            note: getNote.result
+          }
+        }
+      };
+      getNote.onerror = function(e){
+        console.log("Error: " + e);
+        response.data = "Error" + e;
+        return {
+          error: 550,
+          status: "Error" + e
+        }
+      };
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+        db.close();
+      };
+
+        return getNote;
+    };
+    }
+    )
+
+
+  }
+
+  getFromLocalStorageByID(id){
     // Open (or create) the database
     let open = indexedDB.open("Notes", 1);
 
@@ -84,14 +149,66 @@ export class LocalSaveService {
 
       getNote.onsuccess = function() {
         if(typeof getNote.result === "undefined"){
-          console.log("Could not find note")
+          console.log("Could not find note");
+
+          return {
+            code: "404",
+            status: "Could not find note"
+          }
         }
         else{
           console.log(getNote.result.note);
+          return {
+            code: "200",
+            status: "Found Note",
+            note: getNote.result.note
+          }
+
         }
       };
-      getNote.onerror = function(){
-        console.log(getNote)
+      getNote.onerror = function(e){
+        console.log("Error: " + e);
+        return {
+          error: 550,
+          status: "Error" + e
+        }
+      };
+
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+        db.close();
+      };
+    }
+  }
+
+
+
+  deleteFromLocalStorageByID(id){
+    // Open (or create) the database
+    let open = indexedDB.open("Notes", 1);
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      let db = open.result;
+      let tx = db.transaction("NotesStore", "readwrite");
+      let store = tx.objectStore("NotesStore");
+      let index = store.index("NoteIndex");
+
+      // // Query the data
+      let deleteNote = store.delete(id);
+
+      deleteNote.onsuccess = function() {
+        console.log(deleteNote);
+        // if(typeof deleteNote.result === "undefined"){
+        //   console.log("Could not find note")
+        // }
+        // else{
+        //   console.log(deleteNote.result.note);
+        // }
+      };
+      deleteNote.onerror = function(e){
+        console.log("Error: " + e)
       };
 
 

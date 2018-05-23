@@ -5,4 +5,9 @@
   <br>
   <input [(ngModel)]="noteID" placeholder="Note ID"><br>
   <button (click)="getByID()">Get</button>
+  <button (click)="deleteByID()">Delete</button>
+  <button (click)="getAll()">All</button>
+  <ul>
+    <li *ngFor="let note of noteArray">{{note.name}}</li>
+  </ul>
 </div>

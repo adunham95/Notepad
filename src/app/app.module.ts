@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule } from '@angular/forms';
+import {LocalSaveService} from "./local-save.service";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LocalSaveService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
