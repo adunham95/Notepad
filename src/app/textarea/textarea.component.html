@@ -1,13 +1,4 @@
 <div class="textArea">
-  <input [(ngModel)]="mainTitle"><br>
-  <textarea [(ngModel)]="mainTextArea"></textarea>
-  <button (click)="saveText()">Save</button>
-  <br>
-  <input [(ngModel)]="noteID" placeholder="Note ID"><br>
-  <button (click)="getByID()">Get</button>
-  <button (click)="deleteByID()">Delete</button>
-  <button (click)="getAll()">All</button>
-  <ul>
-    <li *ngFor="let note of noteArray">{{note.name}}</li>
-  </ul>
+  <input [(ngModel)]="title" #titleInput>
+  <button (click)="addText(titleInput.value)">Add (PouchDB)</button>
 </div>
