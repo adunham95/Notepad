@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FormsModule } from '@angular/forms';
-import {LocalSaveService} from './local-save.service';
-
+import { PouchDBStorageService} from './services/pouch-dbstorage.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +14,7 @@ import {LocalSaveService} from './local-save.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [LocalSaveService],
+  providers: [PouchDBStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
