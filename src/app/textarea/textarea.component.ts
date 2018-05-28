@@ -10,8 +10,8 @@ export class TextareaComponent implements OnInit {
   note: any;
   constructor( private pouchStorage: PouchDBStorageService) { }
 
-  mainTitle = 'Title';
-  mainTextArea = 'Text Area';
+  mainTitle = '';
+  mainTextArea = '';
   noteID = '';
   noteArray;
 
@@ -19,7 +19,6 @@ export class TextareaComponent implements OnInit {
   returnedTitle = "";
   returnedBody = "";
 
-  item="";
 
   ngOnInit() {
     console.log(this.pouchStorage);
@@ -33,6 +32,12 @@ export class TextareaComponent implements OnInit {
       console.log(res);
       this.noteArray = res.rows
     })
+  }
+
+  switchToUpdate(id){
+      document.getElementById(id + "edit").classList.remove("hidden");
+      document.getElementById(id + "show").classList.add("hidden");
+      document.getElementById(id + "updateButton").classList.add("hidden");
   }
 
     addText() {
@@ -52,10 +57,16 @@ export class TextareaComponent implements OnInit {
       })
     }
 
-    updateNote() {
-      console.log(this.note);
-      this.pouchStorage.updateNote(this.note);
-      this.getAll()
+    updateNote(id, newTitle, newBody) {
+    let updatedNote;
+      this.pouchStorage.getItemByID(id).then((res)=>{
+        updatedNote = res;
+        updatedNote.title = newTitle;
+        updatedNote.body = newBody;
+        console.log(updatedNote);
+        this.pouchStorage.updateNote(updatedNote);
+        this.getAll();
+      });
     }
 
     addComment(comment, id){
@@ -66,7 +77,11 @@ export class TextareaComponent implements OnInit {
       let noteWithComment;
       this.pouchStorage.getItemByID(id).then((res)=>{
         noteWithComment = res;
-        noteWithComment.comments.push(newComment);
+        if (noteWithComment.comments === ""){
+          noteWithComment.comments = [];
+          noteWithComment.comments.push(newComment);
+        }
+        else { noteWithComment.comments.push(newComment); }
         console.log(noteWithComment);
         this.pouchStorage.updateNote(noteWithComment);
         this.getAll();
