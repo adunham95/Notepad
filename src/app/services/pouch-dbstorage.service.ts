@@ -21,12 +21,15 @@ export class PouchDBStorageService {
         _id: id,
         id: id,
         title: title,
-        mainText: body,
+        body: body,
+        projectTitle: "Scratch",
+        projectID: "123456",
+        comments: ''
       });
       console.log(response);
       return response
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       return error
     }
   }
@@ -40,7 +43,7 @@ export class PouchDBStorageService {
       console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       return error
     }
   }
@@ -52,7 +55,7 @@ export class PouchDBStorageService {
       console.log(response);
       return response;
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       return error
     }
   }
@@ -67,7 +70,7 @@ export class PouchDBStorageService {
       console.log(cleanUp);
       return response;
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       return error
     }
 
@@ -80,7 +83,10 @@ export class PouchDBStorageService {
         _rev: note._rev,
         id: note.id,
         title: note.title,
-        mainText: note.mainText,
+        body: note.body,
+        projectTitle: note.projectTitle,
+        projectID: note.projectID,
+        comments: note.comments,
       });
       const cleanUp = await this.db.viewCleanup();
       console.log(cleanUp);

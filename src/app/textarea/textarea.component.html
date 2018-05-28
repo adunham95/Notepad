@@ -1,14 +1,30 @@
 <div class="textArea">
+  <h2>New Note</h2>
   <input [(ngModel)]="mainTitle" #noteTitle>
   <textarea [(ngModel)]="mainTextArea" #noteBody></textarea>
   <button (click)="addText(noteTitle.value, noteBody.value)">Add (PouchDB)</button>
+  <br>
 
+  <h2>Find and Delete Notes</h2>
   <input [(ngModel)]="noteID" #getNoteID>
   <button (click)="getByID(getNoteID.value)">Get By ID (PouchDB)</button>
   <button (click)="removeByID(getNoteID.value)">Delete By ID (PouchDB)</button>
+  <br>
 
 
+  <h2>Update Note</h2>
   <input [(ngModel)]="returnedTitle">
   <input [(ngModel)]="returnedBody">
   <button (click)="updateNote()">UpdateNote (PouchDB)</button>
+  <br>
+
+  <h2>Note List</h2>
+  <ul>
+    <li *ngFor="let note of noteArray">
+      {{note.doc.title}}
+      {{note.doc.body}}
+      <button (click)="removeByID(note.doc._id)">Delete By ID</button>
+      <button (click)="getByID(note.doc._id)">Update</button>
+    </li>
+  </ul>
 </div>
