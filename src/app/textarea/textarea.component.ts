@@ -14,14 +14,40 @@ export class TextareaComponent implements OnInit {
   mainTextArea = 'Text Area';
   noteID = '';
   noteArray;
-  title = '';
+
+  //Returned Item
+  returnedTitle = "";
+  returnedBody = "";
 
   ngOnInit() {
-    console.log(this.title);
     console.log(this.pouchStorage);
+    console.log("Getting all notes");
+    this.pouchStorage.getAllItems().then((res) =>{
+      console.log(res)
+    })
   }
 
     addText() {
-      this.pouchStorage.addListItem(this.title);
+      this.pouchStorage.addListItem(this.mainTitle, this.mainTextArea);
+    }
+
+
+    getByID(){
+      this.pouchStorage.getItemByID(this.noteID).then((res) =>{
+        this.returnedTitle = res.title;
+        this.returnedBody = res.mainText;
+        this.note = res;
+        console.log(this.note);
+      })
+    }
+
+    updateNote() {
+      this.pouchStorage.updateNote(this.note);
+    }
+
+    removeByID(){
+      this.pouchStorage.deleteItemByID(this.noteID).then((res) =>{
+        console.log(res)
+      })
     }
 }

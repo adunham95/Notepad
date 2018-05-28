@@ -1,4 +1,14 @@
 <div class="textArea">
-  <input [(ngModel)]="title" #titleInput>
-  <button (click)="addText(titleInput.value)">Add (PouchDB)</button>
+  <input [(ngModel)]="mainTitle" #noteTitle>
+  <textarea [(ngModel)]="mainTextArea" #noteBody></textarea>
+  <button (click)="addText(noteTitle.value, noteBody.value)">Add (PouchDB)</button>
+
+  <input [(ngModel)]="noteID" #getNoteID>
+  <button (click)="getByID(getNoteID.value)">Get By ID (PouchDB)</button>
+  <button (click)="removeByID(getNoteID.value)">Delete By ID (PouchDB)</button>
+
+
+  <input [(ngModel)]="returnedTitle">
+  <input [(ngModel)]="returnedBody">
+  <button (click)="updateNote()">UpdateNote (PouchDB)</button>
 </div>
