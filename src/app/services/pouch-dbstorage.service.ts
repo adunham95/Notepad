@@ -20,11 +20,12 @@ export class PouchDBStorageService {
       const response = await this.db.put({
         _id: id,
         id: id,
+        timestamp: new Date(),
         title: title,
         body: body,
         projectTitle: "Scratch",
         projectID: "123456",
-        comments: ''
+        comments: []
       });
       console.log(response);
       return response
@@ -82,6 +83,7 @@ export class PouchDBStorageService {
         _id: note._id,
         _rev: note._rev,
         id: note.id,
+        timestamp: new Date(),
         title: note.title,
         body: note.body,
         projectTitle: note.projectTitle,

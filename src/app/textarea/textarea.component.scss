@@ -1,10 +1,14 @@
 .textArea{
   margin: 1rem;
 
-  textarea{
-  
+  textarea, input{
+    width: 100%;
   }
   input{
-    
+
+  }
+
+  li{
+    padding-bottom: 1em;
   }
 }

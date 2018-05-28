@@ -25,6 +25,11 @@
       {{note.doc.body}}
       <button (click)="removeByID(note.doc._id)">Delete By ID</button>
       <button (click)="getByID(note.doc._id)">Update</button>
+      <div *ngFor="let comment of note.doc.comments">
+        {{comment.comment}}
+      </div>
+      <input #noteComment>
+      <button (click)="addComment(noteComment.value, note.doc._id)">Add Comment</button>
     </li>
   </ul>
 </div>

@@ -19,6 +19,8 @@ export class TextareaComponent implements OnInit {
   returnedTitle = "";
   returnedBody = "";
 
+  item="";
+
   ngOnInit() {
     console.log(this.pouchStorage);
     this.getAll()
@@ -35,6 +37,8 @@ export class TextareaComponent implements OnInit {
 
     addText() {
       this.pouchStorage.addListItem(this.mainTitle, this.mainTextArea);
+      this.mainTitle = "";
+      this.mainTextArea = "";
       this.getAll()
     }
 
@@ -52,6 +56,21 @@ export class TextareaComponent implements OnInit {
       console.log(this.note);
       this.pouchStorage.updateNote(this.note);
       this.getAll()
+    }
+
+    addComment(comment, id){
+      const newComment = {
+        comment: comment,
+        timestamp: new Date()
+      };
+      let noteWithComment;
+      this.pouchStorage.getItemByID(id).then((res)=>{
+        noteWithComment = res;
+        noteWithComment.comments.push(newComment);
+        console.log(noteWithComment);
+        this.pouchStorage.updateNote(noteWithComment);
+        this.getAll();
+      });
     }
 
 
