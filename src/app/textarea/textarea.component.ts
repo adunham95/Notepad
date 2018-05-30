@@ -33,11 +33,10 @@ export class TextareaComponent implements OnInit {
       this.noteArray = res.rows
     })
   }
-
-  switchToUpdate(id){
-      document.getElementById(id + "edit").classList.remove("hidden");
-      document.getElementById(id + "show").classList.add("hidden");
-      document.getElementById(id + "updateButton").classList.add("hidden");
+  toggleEdit(id){
+      document.getElementById(id + "edit").classList.toggle("hidden");
+      document.getElementById(id + "show").classList.toggle("hidden");
+      document.getElementById(id + "updateButton").classList.toggle("hidden");
   }
 
     addText() {

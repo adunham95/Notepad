@@ -25,6 +25,7 @@
         <input [(ngModel)]="note.doc.title" #updatedTitle>
         <input [(ngModel)]="note.doc.body" #updatedBody>
         <button (click)="updateNote(note.doc._id, updatedTitle.value, updatedBody.value)">UpdateNote</button>
+        <button (click)="toggleEdit(note.doc._id)">Close</button>
       </div>
 
       <div [id]="note.doc._id + 'show'" class="">
@@ -32,7 +33,7 @@
         {{note.doc.body}}
       </div>
       <button (click)="removeByID(note.doc._id)">Delete By ID</button>
-      <button [id]="note.doc._id + 'updateButton'" (click)="switchToUpdate(note.doc._id)">Update</button>
+      <button [id]="note.doc._id + 'updateButton'" (click)="toggleEdit(note.doc._id)">Update</button>
       <div *ngFor="let comment of note.doc.comments">
         {{comment.comment}}
       </div>
