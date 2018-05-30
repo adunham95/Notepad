@@ -2,7 +2,15 @@
   <h2>New Note</h2>
   <input [(ngModel)]="mainTitle" #noteTitle>
   <textarea [(ngModel)]="mainTextArea" #noteBody></textarea>
+  <select [(ngModel)]="selectedProject">
+    <option *ngFor="let project of projectArray" [value]="project.id">{{project.doc.name}}</option>
+  </select>
   <button (click)="addText(noteTitle.value, noteBody.value)">New Note</button>
+  <br>
+
+  <h2>New Project</h2>
+  <input [(ngModel)]="projectName" #pName>
+  <button (click)="addProject(pName.value)">New Project</button>
   <br>
 
   <!--<h2>Find and Delete Notes (Testing Purposes)</h2>-->

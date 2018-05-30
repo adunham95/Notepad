@@ -12,8 +12,14 @@ export class TextareaComponent implements OnInit {
 
   mainTitle = '';
   mainTextArea = '';
+  selectedProject;
   noteID = '';
+
+  projectArray;
   noteArray;
+
+  //Projects
+  projectName ='';
 
   //Returned Item
   returnedTitle = "";
@@ -28,9 +34,17 @@ export class TextareaComponent implements OnInit {
 
   getAll(){
     console.log("Getting all notes");
-    this.pouchStorage.getAllItems().then((res) =>{
+    this.pouchStorage.getAllNotes().then((res) =>{
       console.log(res);
       this.noteArray = res.rows
+    });
+    this.pouchStorage.getAllProjects().then((res)=>{
+      console.log(res);
+      this.projectArray = res.rows;
+      if(this.projectArray.length === 0){
+        this.pouchStorage.createProject("Scratch", "12345");
+        this.getAll();
+      }
     })
   }
   toggleEdit(id){
@@ -40,15 +54,24 @@ export class TextareaComponent implements OnInit {
   }
 
     addText() {
-      this.pouchStorage.addListItem(this.mainTitle, this.mainTextArea);
-      this.mainTitle = "";
-      this.mainTextArea = "";
-      this.getAll()
+      this.pouchStorage.addListItem(this.mainTitle, this.mainTextArea, this.selectedProject).then( (res)=>{
+        this.mainTitle = "";
+        this.mainTextArea = "";
+        this.getAll()
+        }
+      );
+    }
+
+    addProject() {
+      this.pouchStorage.createProject(this.projectName).then((res)=>{
+        this.projectName = "";
+        this.getAll()
+      });
     }
 
 
     getByID(id){
-      this.pouchStorage.getItemByID(id).then((res) =>{
+      this.pouchStorage.getNoteByID(id).then((res) =>{
         this.returnedTitle = res.title;
         this.returnedBody = res.body;
         this.note = res;
@@ -58,7 +81,7 @@ export class TextareaComponent implements OnInit {
 
     updateNote(id, newTitle, newBody) {
     let updatedNote;
-      this.pouchStorage.getItemByID(id).then((res)=>{
+      this.pouchStorage.getNoteByID(id).then((res)=>{
         updatedNote = res;
         updatedNote.title = newTitle;
         updatedNote.body = newBody;
@@ -74,7 +97,7 @@ export class TextareaComponent implements OnInit {
         timestamp: new Date()
       };
       let noteWithComment;
-      this.pouchStorage.getItemByID(id).then((res)=>{
+      this.pouchStorage.getNoteByID(id).then((res)=>{
         noteWithComment = res;
         if (noteWithComment.comments === ""){
           noteWithComment.comments = [];
@@ -89,7 +112,7 @@ export class TextareaComponent implements OnInit {
 
 
     removeByID(id){
-      this.pouchStorage.deleteItemByID(id).then((res) =>{
+      this.pouchStorage.deleteNoteByID(id).then((res) =>{
         console.log(res);
         this.getAll()
       })
