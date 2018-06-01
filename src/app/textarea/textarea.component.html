@@ -1,17 +1,5 @@
 <div class="textArea">
-  <h2>New Note</h2>
-  <input [(ngModel)]="mainTitle" #noteTitle>
-  <textarea [(ngModel)]="mainTextArea" #noteBody></textarea>
-  <select [(ngModel)]="selectedProject">
-    <option *ngFor="let project of projectArray" [value]="project.id">{{project.doc.name}}</option>
-  </select>
-  <button (click)="addText(noteTitle.value, noteBody.value)">New Note</button>
-  <br>
-
-  <h2>New Project</h2>
-  <input [(ngModel)]="projectName" #pName>
-  <button (click)="addProject(pName.value)">New Project</button>
-  <br>
+  <app-menu></app-menu>
 
   <!--<h2>Find and Delete Notes (Testing Purposes)</h2>-->
   <!--<input [(ngModel)]="noteID" #getNoteID>-->
@@ -27,26 +15,5 @@
   <!--<br>-->
 
   <h2>Note List</h2>
-  <ul>
-    <li *ngFor="let note of noteArray">
-      <div [id]="note.doc._id + 'edit'" class="hidden">
-        <input [(ngModel)]="note.doc.title" #updatedTitle>
-        <input [(ngModel)]="note.doc.body" #updatedBody>
-        <button (click)="updateNote(note.doc._id, updatedTitle.value, updatedBody.value)">UpdateNote</button>
-        <button (click)="toggleEdit(note.doc._id)">Close</button>
-      </div>
-
-      <div [id]="note.doc._id + 'show'" class="">
-        {{note.doc.title}}
-        {{note.doc.body}}
-      </div>
-      <button (click)="removeByID(note.doc._id)">Delete By ID</button>
-      <button [id]="note.doc._id + 'updateButton'" (click)="toggleEdit(note.doc._id)">Update</button>
-      <div *ngFor="let comment of note.doc.comments">
-        {{comment.comment}}
-      </div>
-      <input #noteComment>
-      <button (click)="addComment(noteComment.value, note.doc._id)">Add Comment</button>
-    </li>
-  </ul>
+  <app-task *ngFor="let note of noteArray" [note]="note"></app-task>
 </div>

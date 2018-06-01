@@ -75,6 +75,10 @@ export class PouchDBStorageService {
     }
   }
 
+  remove(array, element) {
+    return array.filter(e => e !== element);
+  }
+
   //TODO add the ability to removed notes from the
   async deleteNoteByID(id: string) {
     try {
@@ -84,9 +88,11 @@ export class PouchDBStorageService {
       const response = await this.dbNotes.remove(itemToDelete);
       const cleanUp = await this.dbNotes.viewCleanup();
       const project = await this.getProjectByID(projectID);
-      project.notes = project.notes.filter(id);
+      project.notes = this.remove(project.notes, id);
+      console.log(project.notes);
       console.log(response);
       console.log(cleanUp);
+      await this.updateProject(project);
       return response;
     } catch (error) {
       console.warn(error);

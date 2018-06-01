@@ -79,17 +79,6 @@ export class TextareaComponent implements OnInit {
       })
     }
 
-    updateNote(id, newTitle, newBody) {
-    let updatedNote;
-      this.pouchStorage.getNoteByID(id).then((res)=>{
-        updatedNote = res;
-        updatedNote.title = newTitle;
-        updatedNote.body = newBody;
-        console.log(updatedNote);
-        this.pouchStorage.updateNote(updatedNote);
-        this.getAll();
-      });
-    }
 
     addComment(comment, id){
       const newComment = {

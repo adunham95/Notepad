@@ -1,0 +1,23 @@
+<div class="menu hidden">
+  <div class="inputMenu">
+    <button class="home">Home</button>
+    <button class="add" (click)="showAddMenu()">+</button>
+    <button class="tasks">Tasks</button>
+  </div>
+  <div class="addMenu">
+    <div class="menuSelection newNote">
+      <h2>New Note</h2>
+      <input [(ngModel)]="mainTitle" #noteTitle>
+      <textarea [(ngModel)]="mainTextArea" #noteBody></textarea>
+      <select [(ngModel)]="selectedProject">
+        <option *ngFor="let project of projectArray" [value]="project.id">{{project.doc.name}}</option>
+      </select>
+      <button (click)="addText(noteTitle.value, noteBody.value)">New Note</button>
+    </div>
+    <div class="menuSelection newProject">
+      <h2>New Project</h2>
+      <input [(ngModel)]="projectName" #pName>
+      <button (click)="addProject(pName.value)">New Project</button>
+    </div>
+  </div>
+</div>
