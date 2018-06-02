@@ -1,8 +1,8 @@
 {
   "name": "Notepad",
   "short_name": "Notepad",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#454ADE",
+  "background_color": "#ECEBE4",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
