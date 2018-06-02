@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { PouchDBStorageService} from './services/pouch-dbstorage.service';
 import { MenuComponent } from './menu/menu.component';
 import { TaskComponent } from './task/task.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { TaskComponent } from './task/task.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [PouchDBStorageService],
   bootstrap: [AppComponent]

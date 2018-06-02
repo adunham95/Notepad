@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { PouchDBStorageService } from '../services/pouch-dbstorage.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { PouchDBStorageService } from '../services/pouch-dbstorage.service';
 export class MenuComponent implements OnInit {
 
   constructor(private pouchStorage: PouchDBStorageService) { }
+
+  @Input() projectArray;
 
   mainTitle = '';
   mainTextArea = '';
