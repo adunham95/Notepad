@@ -15,5 +15,7 @@
   <!--<br>-->
 
   <h2>Note List</h2>
-  <app-task *ngFor="let note of noteArray" [note]="note"></app-task>
+  <div class="taskList">
+    <app-task *ngFor="let note of noteArray" [note]="note"></app-task>
+  </div>
 </div>
