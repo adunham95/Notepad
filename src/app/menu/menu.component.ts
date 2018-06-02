@@ -25,7 +25,10 @@ export class MenuComponent implements OnInit {
   returnedTitle = "";
   returnedBody = "";
 
+  addMenu;
+
   ngOnInit() {
+    this.addMenu =document.querySelector(".menu");
   }
 
 
@@ -33,6 +36,7 @@ export class MenuComponent implements OnInit {
     this.pouchStorage.addListItem(this.mainTitle, this.mainTextArea, this.selectedProject).then( (res)=>{
         this.mainTitle = "";
         this.mainTextArea = "";
+      this.addMenu.classList.toggle("hidden")
       }
     );
   }
@@ -40,12 +44,12 @@ export class MenuComponent implements OnInit {
   addProject() {
     this.pouchStorage.createProject(this.projectName).then((res)=>{
       this.projectName = "";
+      this.addMenu.classList.toggle("hidden")
     });
   }
 
   showAddMenu(){
-    console.log("Showing Menu");
-    let addMenu =document.querySelector(".menu");
-    addMenu.classList.toggle("hidden")
+    console.log("Toggleing Menu Menu");
+    this.addMenu.classList.toggle("hidden")
   }
 }

@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~normalize.css";
+@import "_vars.scss";
+
+body{
+  background: var(--background);
+}
