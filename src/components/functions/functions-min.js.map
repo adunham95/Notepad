@@ -1,0 +1,1 @@
+{"version":3,"sources":["functions.js"],"names":["saveToLocalStoreage","data","console","log","_react","require"],"mappings":"qFAEO,QAASA,qBAAoBC,GAClCC,QAAQC,IAAIF,kEADED,oBAAAA,mBAFhB,IAAAI,QAAAC,QAAA","file":"functions-min.js","sourcesContent":["import React from \"react\";\n\nexport function saveToLocalStoreage(data) {\n  console.log(data);\n}\n\n"]}

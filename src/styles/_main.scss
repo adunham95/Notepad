@@ -1,0 +1,133 @@
+.navBar{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background: #454ADE;
+  color: white;
+  border-radius: 30px 30px 0 0;
+  transition: 0.5s;
+  &.hidden{
+    transform: translateY(calc(100% - 4em));
+  }
+  .nav{
+    display: flex;
+    justify-content: space-around;
+    font-size: 2em;
+    position: relative;
+    height: 2em;
+    .navItem{
+      padding: 0.5em;
+    }
+    .addProjects{
+      font-size: 2em;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      //border: 1px solid black;
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      margin-top: -0.5em;
+      position: relative;
+      .plus{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+  }
+  .navCreate{
+    display: flex;
+    @include smaller($smallTiny){
+      flex-direction: column;
+    }
+    .create{
+      width: 50%;
+      @include smaller($smallTiny){
+        width: 100%;
+      }
+    }
+    .input{
+      padding: 1em;
+      input{
+        padding: 0.25em;
+        width: 100%;
+      }
+      textarea{
+        padding: 0.25em;
+        width: 100%;
+      };
+    }
+    .button{
+      font-size: 1.5em;
+      padding-right: 0.75em;
+      padding-bottom: 0.75em;
+      margin-right: 0;
+      margin-left: auto;
+      border: none;
+      display: flex;
+      justify-content: flex-end;
+      button{
+        align-self: flex-end;
+        .active:after{
+          transform: none;
+
+        }
+
+      }
+    }
+    .title{
+      padding: 0.5em 1em;
+    }
+    .createProject{
+    }
+    .createNote{
+
+    }
+  }
+}
+
+.notesContainer{
+  padding-bottom: 5em;
+}
+
+.noteCard{
+  padding: 1em;
+  margin: 0.5em 0;
+  transition: 0.5s;
+  .topContent{
+    display: flex;
+    justify-content: space-between;
+  }
+  .input{
+    padding: 1em 0;
+    border: 1px solid black;
+    margin: 5px 0;
+    input{
+      padding: 0.25em;
+      width: 100%;
+    }
+    textarea{
+      padding: 0.25em;
+      width: 100%;
+    };
+  }
+  .button {
+    font-size: 1.5em;
+    padding-right: 0.75em;
+    padding-bottom: 0.75em;
+    margin-right: 0;
+    margin-left: auto;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      align-self: flex-end;
+      .active:after {
+        transform: none;
+
+      }
+    }
+  }
+}

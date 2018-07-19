@@ -1,0 +1,18 @@
+////////////////////* includes *///////////////////////////
+@import '_normalize';
+@import '_vars';
+@import '_animations';
+@import '_functions';
+@import '_elements';
+@import '_typography';
+@import '_buttons';
+@import '_nav';
+@import '_layout';
+@import '_main';
+
+body{
+  @include generateVariables($colors);
+  @include generateVariables($fontSize);
+  @include generateVariables($layers);
+  @include generateVariables($times);
+}

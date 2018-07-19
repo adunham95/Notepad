@@ -1,9 +1,0 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~normalize.css";
-@import "_vars.scss";
-
-body{
-  background: var(--background);
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
-  font-family: 'Roboto', sans-serif;
-}
