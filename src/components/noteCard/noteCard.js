@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {deleteSingleNote, getRandomID, saveToLocalStorage} from "../functions/functions";
+import {deleteSingleNote, getRandomID, putNote} from "../functions/functions";
 
 class NoteCard extends Component {
 
@@ -16,7 +16,7 @@ class NoteCard extends Component {
 
         };
         this.handleChange = this.handleChange.bind(this);
-        this.savenote = this.savenote.bind(this);
+        this.saveNote = this.saveNote.bind(this);
     }
 
     deleteItem(){
@@ -39,7 +39,7 @@ class NoteCard extends Component {
         });
     }
 
-    savenote(event){
+    saveNote(event){
         event.preventDefault();
         let note = {
             _id: this.state.id,
@@ -47,9 +47,10 @@ class NoteCard extends Component {
             name: this.state.newName,
             description: this.state.newDescription,
             created: this.state.created,
+            comments: this.props.note.doc.comments
         };
         console.log(note);
-        saveToLocalStorage(note, true);
+        putNote(note, true);
     }
 
   render() {
@@ -60,39 +61,49 @@ class NoteCard extends Component {
                 <h2>{this.props.note.doc.name}</h2>
                 <h4>{new Date(this.props.note.doc.created).toLocaleString()}</h4>
                 <p>{this.props.note.doc.description}</p>
+                <div className={"commentBlocks"}>
+                    {this.props.note.doc.comments.map((comment) => (
+                        <div key={comment}>{comment} </div>
+                    ))}
+                </div>
+
             </div>
             <div className={"actions"}>
-              <div onClick={this.deleteItem}>Delete</div>
-              <div onClick={this.editItem}>Edit</div>
+                {this.props.note.doc.editable !== false &&
+                    <div onClick={this.deleteItem}>Delete</div>
+                }
+                {this.props.note.doc.editable !== false &&
+                    <div onClick={this.editItem}>Edit</div>
+                }
             </div>
           </div>
-          <div className={"editContent"}>
-              <form onSubmit={this.savenote}>
-                  <div className={"input"}>
-                      <input
-                          type="text"
-                          placeholder={"Note Name"}
-                          value={this.state.newName}
-                          name={"newName"}
-                          onChange={this.handleChange}
-                      />
-                  </div>
-                  <div className={"input"}>
-                    <textarea
-                        rows={5}
-                        placeholder={"Note Description"}
-                        value={this.state.newDescription}
-                        name={"newDescription"}
-                        onChange={this.handleChange}
-                    />
-                  </div>
-                  <div className={"button"}>
-                      <button>
-                          Update Note
-                      </button>
-                  </div>
-              </form>
-          </div>
+          {/*<div className={"editContent"}>*/}
+              {/*<form onSubmit={this.savenote}>*/}
+                  {/*<div className={"input"}>*/}
+                      {/*<input*/}
+                          {/*type="text"*/}
+                          {/*placeholder={"Note Name"}*/}
+                          {/*value={this.state.newName}*/}
+                          {/*name={"newName"}*/}
+                          {/*onChange={this.handleChange}*/}
+                      {/*/>*/}
+                  {/*</div>*/}
+                  {/*<div className={"input"}>*/}
+                    {/*<textarea*/}
+                        {/*rows={5}*/}
+                        {/*placeholder={"Note Description"}*/}
+                        {/*value={this.state.newDescription}*/}
+                        {/*name={"newDescription"}*/}
+                        {/*onChange={this.handleChange}*/}
+                    {/*/>*/}
+                  {/*</div>*/}
+                  {/*<div className={"button"}>*/}
+                      {/*<button>*/}
+                          {/*Update Note*/}
+                      {/*</button>*/}
+                  {/*</div>*/}
+              {/*</form>*/}
+          {/*</div>*/}
 
     </div>);
   }

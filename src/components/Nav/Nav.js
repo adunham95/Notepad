@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {getRandomID, saveToLocalStorage} from "../functions/functions";
+import {getAllNotes, getRandomID, noteWatcher, putNote, saveToLocalStorage} from "../functions/functions";
 
-class Nav extends Component {
+export class BottomNav extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -10,20 +10,49 @@ class Nav extends Component {
             projectDescription: "",
             noteName: "",
             noteDescription: "",
+            noteProject: "scratch",
+            projects: []
         };
         this.showMenu = this.showMenu.bind(this);
         this.saveProject = this.saveProject.bind(this);
-        this.savenote = this.savenote.bind(this);
+        this.saveNote = this.saveNote.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleNoteChange = this.handleNoteChange.bind(this);
+    }
+
+    componentWillMount(){
+        this.handleNoteChange();
+    }
+
+    componentDidMount() {
+        // Subscribe to changes
+        noteWatcher().on("change", (data)=> {
+            console.log(data);
+            console.log("data Changed");
+            this.handleNoteChange()
+        });
+
+
+    }
+
+    handleNoteChange() {
+        // Update component state whenever the data source changes
+        getAllNotes().then(
+            (res) => {
+                console.log(res);
+                this.setState({
+                    notes: res.rows.filter(item => item.doc.type === "note"),
+                    projects: res.rows.filter(item => item.doc.type === "project" && item.doc.editable !== false),
+                    users: res.rows.filter(item => item.doc.type === "user"),
+                })
+            }
+        );
     }
 
     handleChange(event){
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        console.log(target);
-
-
         this.setState({
             [name]: value
         });
@@ -43,11 +72,11 @@ class Nav extends Component {
             projectName: "",
             projectDescription: "",
         });
+        putNote(project);
 
-        saveToLocalStorage(project);
     }
 
-    savenote(event){
+    saveNote(event){
         event.preventDefault();
         let note = {
             _id: getRandomID(5),
@@ -55,6 +84,8 @@ class Nav extends Component {
             name: this.state.noteName,
             description: this.state.noteDescription,
             created: Date.now(),
+            project: this.state.noteProject,
+            comments: [],
         };
         console.log(note);
         this.setState({
@@ -62,7 +93,7 @@ class Nav extends Component {
             noteDescription: "",
         });
 
-        saveToLocalStorage(note);
+        putNote(note);
     }
 
     showMenu(){
@@ -83,13 +114,13 @@ class Nav extends Component {
 
   render() {
     return(
-      <div className={"navBar " + this.state.navHidden}>
+      <div className={"navBarBottom " + this.state.navHidden}>
         <div className={"nav"}>
-            <div className={"navItem projectsLink"}>Projects</div>
+            {/*<div className={"navItem projectsLink"}>Projects</div>*/}
             <div className={"addProjects"} onClick={this.showMenu}>
                 <div className={"plus"}>+</div>
             </div>
-            <div className={"navItem notesLink"}>Notes</div>
+            {/*<div className={"navItem notesLink"}>Notes</div>*/}
         </div>
         <div className={"navCreate"}>
             <div className={"create createProject"}>
@@ -121,7 +152,7 @@ class Nav extends Component {
                 </form>
             </div>
             <div className={"create createNote"}>
-                <form onSubmit={this.savenote}>
+                <form onSubmit={this.saveNote}>
                 <h3 className={"title"}>Create Note</h3>
                 <div className={"input"}>
                     <input
@@ -131,6 +162,13 @@ class Nav extends Component {
                         name={"noteName"}
                         onChange={this.handleChange}
                     />
+                </div>
+                <div className={"input"}>
+                    <select name={"noteProject"} value={this.state.noteProject} onChange={this.handleChange}>
+                        {this.state.projects.map((project) => (
+                            <option key={project.id} value={project.id}>{project.doc.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className={"input"}>
                     <textarea
@@ -154,4 +192,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+

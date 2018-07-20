@@ -1,26 +1,21 @@
 import React, { Component } from "react";
-import Nav from "../Nav/Nav";
 import {getAllNotes, noteWatcher} from "../functions/functions";
 import NoteCard from "../noteCard/noteCard";
+import {Link} from "react-router-dom";
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             notes: [],
+            projects: [],
+            users: []
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillMount(){
-        getAllNotes().then(
-            (res) => {
-                console.log(res);
-                this.setState({
-                    notes: res.rows,
-                })
-            }
-        );
+        this.handleChange();
     }
 
     componentDidMount() {
@@ -30,11 +25,6 @@ class Home extends Component {
             console.log("data Changed");
             this.handleChange()
         });
-        //
-        //
-        //
-        // noteWatcher().on("change").then(this.handleChange());
-        // this.handleChange()
 
 
     }
@@ -45,7 +35,9 @@ class Home extends Component {
             (res) => {
                 console.log(res);
                 this.setState({
-                    notes: res.rows,
+                    notes: res.rows.filter(item => item.doc.type === "note"),
+                    projects: res.rows.filter(item => item.doc.type === "project"),
+                    users: res.rows.filter(item => item.doc.type === "user"),
                 })
             }
         );
@@ -55,12 +47,25 @@ class Home extends Component {
   render() {
       return (<div>
           <div className={"notesContainer"}>
+              <h3>Notes</h3>
               {this.state.notes.map((note) => (
-                  <NoteCard key={note.id} note={note}/>
-                  // <div key={note.id}>{note.doc.name} - {note.doc.type}</div>
+                  <Link to={"/note/" + note.id} key={note.id}>
+                      <NoteCard key={note.id} note={note}/>
+                  </Link>
               ))}
+
+              <h3>Projects</h3>
+              {this.state.projects.map((project) => (
+                  <Link to={"/project/" + project.id} key={project.id}>
+                      <div>{project.doc.name} - {project.doc.type}</div>
+                  </Link>
+              ))}
+              <h3>Users</h3>
+              {this.state.users.map((user) => (
+                  <div key={user.id}>{user.doc.name} - {user.doc.type}</div>
+              ))}
+
           </div>
-        <Nav/>
       </div>);
   }
 }
