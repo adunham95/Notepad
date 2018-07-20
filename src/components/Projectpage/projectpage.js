@@ -25,8 +25,10 @@ export class ProjectPage extends Component {
             console.log("data Changed");
             this.handleChange()
         });
+    }
 
-
+    componentWillUnmount(){
+        noteWatcher().cancel();
     }
 
     handleChange() {

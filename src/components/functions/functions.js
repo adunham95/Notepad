@@ -27,7 +27,8 @@ export function deleteSingleNote(id) {
 export function getAllNotes() {
     return notePadDB.allDocs({
         include_docs: true,
-        attachments: true
+        attachments: true,
+        descending: true
     })
 }
 
@@ -35,8 +36,12 @@ export function noteWatcher(){
      return notePadDB.changes({since: 'now',live: true, include_docs: true})
 }
 
+export function noteCancel() {
+    return notePadDB.changes.cancel();
+}
+
 export function getRandomID(length) {
-    let id = Math.random().toString(36).substr(2, 2+length);
+    let id = Date.now() +"-" + Math.random().toString(36).substr(2, 2+length);
     return id;
 }
 

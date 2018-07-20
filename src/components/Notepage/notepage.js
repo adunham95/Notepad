@@ -25,15 +25,17 @@ class NotePage extends Component {
             console.log("data Changed");
             this.handleChange()
         });
+    }
 
-
+    componentWillUnmount(){
+        noteWatcher().cancel();
     }
 
     handleChange() {
         // Update component state whenever the data source changes
         getSingleProject(this.props.match.params.id).then(
             (res) => {
-                console.log(res)
+                console.log(res);
                 this.setState({
                     note: res
                 })

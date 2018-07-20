@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {getAllNotes, noteWatcher} from "../functions/functions";
+import {getAllNotes, noteCancel, noteWatcher} from "../functions/functions";
 import NoteCard from "../noteCard/noteCard";
 import {Link} from "react-router-dom";
 
@@ -25,8 +25,10 @@ class Home extends Component {
             console.log("data Changed");
             this.handleChange()
         });
+    }
 
-
+    componentWillUnmount(){
+        noteWatcher().cancel();
     }
 
     handleChange() {
@@ -49,20 +51,18 @@ class Home extends Component {
           <div className={"notesContainer"}>
               <h3>Notes</h3>
               {this.state.notes.map((note) => (
-                  <Link to={"/note/" + note.id} key={note.id}>
-                      <NoteCard key={note.id} note={note}/>
-                  </Link>
+                  <NoteCard key={note.id} note={note}/>
               ))}
 
               <h3>Projects</h3>
               {this.state.projects.map((project) => (
                   <Link to={"/project/" + project.id} key={project.id}>
-                      <div>{project.doc.name} - {project.doc.type}</div>
+                      <div>{project.doc.name}</div>
                   </Link>
               ))}
               <h3>Users</h3>
               {this.state.users.map((user) => (
-                  <div key={user.id}>{user.doc.name} - {user.doc.type}</div>
+                  <div key={user.id}>{user.doc.name}</div>
               ))}
 
           </div>
