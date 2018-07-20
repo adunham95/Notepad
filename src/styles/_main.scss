@@ -144,9 +144,28 @@
   padding: 1em;
   margin: 0.5em 0;
   transition: 0.5s;
-  .topContent{
+  .content{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    .commentBlocks{
+      width: 100%;
+      form{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        .input{
+          width: 75%;
+          margin: 0;
+          padding: 0.25em 0;
+        }
+        .button{
+          font-size: 1em;
+          margin: 0 auto;
+          padding: 0;
+        }
+      }
+    }
   }
   .input{
     padding: 1em 0;
@@ -171,6 +190,7 @@
     display: flex;
     justify-content: flex-end;
     button {
+      text-align: center;
       align-self: flex-end;
       .active:after {
         transform: none;

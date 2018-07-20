@@ -60,41 +60,42 @@ class NoteCard extends Component {
   render() {
     return(
       <div className={"noteCard"}>
-          <div className={"topContent"}>
-            <div className={"content"}>
+          <div className={"content"}>
+            <div className={"topContent"}>
                 <Link to={"/note/" + this.props.note.id} key={this.props.note.id}>
                     <h2>{this.props.note.doc.name}</h2>
                 </Link>
                 <h4>{new Date(this.props.note.doc.created).toLocaleString()}</h4>
                 <p>{this.props.note.doc.description}</p>
-                <div className={"commentBlocks"}>
-                    {this.props.note.doc.comments.map((comment) => (
-                        <Comment data={comment}/>
-                    ))}
-                    <div className={"newComment"}>
-                        <form onSubmit={this.newComment}>
-                            <div className={"input"}>
-                                <input type="text"
-                                       placeholder={"Comment"}
-                                       value={this.state.commentNote}
-                                       name={"commentNote"}
-                                       onChange={this.handleChange}
-
-                                />
-                            </div>
-                            <div className={"button"}>
-                                <button>Add Comment</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
             </div>
             <div className={"actions"}>
                 {this.props.note.doc.editable !== false &&
                     <div onClick={this.deleteItem}>Delete</div>
                 }
             </div>
+              <div className={"commentBlocks"}>
+                  {this.props.note.doc.comments.map((comment) => (
+                      <Comment data={comment}/>
+                  ))}
+                  {this.props.note.doc.editable !== false &&
+                  <div className={"newComment"}>
+                      <form onSubmit={this.newComment}>
+                          <div className={"input"}>
+                              <input type="text"
+                                     placeholder={"Comment"}
+                                     value={this.state.commentNote}
+                                     name={"commentNote"}
+                                     onChange={this.handleChange}
+
+                              />
+                          </div>
+                          <div className={"button"}>
+                              <button>Add Comment</button>
+                          </div>
+                      </form>
+                  </div>
+                  }
+              </div>
           </div>
 
     </div>);
