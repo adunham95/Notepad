@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {getAllNotes, noteCancel, noteWatcher} from "../functions/functions";
 import NoteCard from "../noteCard/noteCard";
 import {Link} from "react-router-dom";
+import {TopNav} from "../Nav/Nav";
 
 class Home extends Component {
     constructor(props) {
@@ -47,8 +48,11 @@ class Home extends Component {
 
 
   render() {
-      return (<div>
+      return (<div className={"page"}>
           <div className={"notesContainer"}>
+              <TopNav>
+
+              </TopNav>
               <h3>Notes</h3>
               {this.state.notes.map((note) => (
                   <NoteCard key={note.id} note={note}/>

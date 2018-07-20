@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {getAllNotes, getSingleProject, noteWatcher} from "../functions/functions";
 import NoteCard from "../noteCard/noteCard";
+import {TopNav} from "../Nav/Nav";
 
 export class ProjectPage extends Component {
    constructor(props) {
@@ -48,7 +49,10 @@ export class ProjectPage extends Component {
 
   render() {
       return(
-          <div>
+          <div className={"page"}>
+              <TopNav>
+
+              </TopNav>
               {this.state.project.map((project) => (
                   <h1 className={"title"} key={project.id}>{project.doc.name}</h1>
               ))}

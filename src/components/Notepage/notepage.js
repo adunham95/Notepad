@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {getSingleProject, noteWatcher} from "../functions/functions";
+import {TopNav} from "../Nav/Nav";
 
 class NotePage extends Component {
     constructor(props) {
@@ -51,7 +52,10 @@ class NotePage extends Component {
 
   render() {
     return(
-        <div className={"notePage"}>
+        <div className={"notePage page"}>
+            <TopNav>
+
+            </TopNav>
             <h1>{this.state.note.name}</h1>
             <h3>{new Date(this.state.note.created).toLocaleString()}</h3>
             <p>{this.state.note.description}</p>

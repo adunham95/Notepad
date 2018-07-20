@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {getAllNotes, getRandomID, noteWatcher, putNote, saveToLocalStorage} from "../functions/functions";
+import {Link} from "react-router-dom";
 
 export class BottomNav extends Component {
     constructor(props){
@@ -115,15 +116,15 @@ export class BottomNav extends Component {
   render() {
     return(
       <div className={"navBarBottom " + this.state.navHidden}>
-        <div className={"nav"}>
-            {/*<div className={"navItem projectsLink"}>Projects</div>*/}
-            <div className={"addProjects"} onClick={this.showMenu}>
+        <div className={"nav"} onClick={this.showMenu}>
+            {/*<div className={"navItem projectsLink " + this.state.navHidden }>Projects</div>*/}
+            <div className={"addProjects"}>
                 <div className={"plus"}>+</div>
             </div>
-            {/*<div className={"navItem notesLink"}>Notes</div>*/}
+            {/*<div className={"navItem notesLink " + this.state.navHidden}>Notes</div>*/}
         </div>
         <div className={"navCreate"}>
-            <div className={"create createProject"}>
+            <div className={"create createProject "}>
                 <form onSubmit={this.saveProject}>
                     <h3 className={"title"}>Create Project</h3>
                     <div className={"input"}>
@@ -190,6 +191,19 @@ export class BottomNav extends Component {
       </div>
     );
   }
+}
+
+export class TopNav extends Component{
+    render() {
+        return (
+            <div className={"navBarTop"}>
+                <Link to={"/"} >
+                    <h2 className={"appName"}>Notepad</h2>
+                </Link>
+                {this.props.children}
+            </div>
+        )
+    }
 }
 
 

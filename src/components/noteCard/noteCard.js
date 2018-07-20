@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {deleteSingleNote, getRandomID, putNote} from "../functions/functions";
 import {Link} from "react-router-dom";
+import {TopNav} from "../Nav/Nav";
 
 class NoteCard extends Component {
 
