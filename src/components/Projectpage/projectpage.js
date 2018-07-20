@@ -49,17 +49,19 @@ export class ProjectPage extends Component {
 
   render() {
       return(
-          <div className={"page"}>
+          <div>
               <TopNav>
 
               </TopNav>
-              {this.state.project.map((project) => (
-                  <h1 className={"title"} key={project.id}>{project.doc.name}</h1>
-              ))}
+              <div className={"page"}>
+                {this.state.project.map((project) => (
+                    <h1 className={"title"} key={project.id}>{project.doc.name}</h1>
+                ))}
 
-              {this.state.notes.map((note) => (
-                  <NoteCard key={note.id} note={note}/>
-              ))}
+                {this.state.notes.map((note) => (
+                    <NoteCard key={note.id} note={note}/>
+                ))}
+              </div>
           </div>
       );
   }

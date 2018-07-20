@@ -52,13 +52,15 @@ class NotePage extends Component {
 
   render() {
     return(
-        <div className={"notePage page"}>
+        <div className={"notePage"}>
             <TopNav>
 
             </TopNav>
-            <h1>{this.state.note.name}</h1>
-            <h3>{new Date(this.state.note.created).toLocaleString()}</h3>
-            <p>{this.state.note.description}</p>
+            <div className={"page"}>
+                <h1>{this.state.note.name}</h1>
+                <h3>{new Date(this.state.note.created).toLocaleString()}</h3>
+                <p>{this.state.note.description}</p>
+            </div>
         </div>
         );
   }

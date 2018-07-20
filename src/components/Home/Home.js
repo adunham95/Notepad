@@ -48,11 +48,11 @@ class Home extends Component {
 
 
   render() {
-      return (<div className={"page"}>
-          <div className={"notesContainer"}>
-              <TopNav>
+      return (<div>
+          <TopNav>
 
-              </TopNav>
+          </TopNav>
+          <div className={"notesContainer page"}>
               <h3>Notes</h3>
               {this.state.notes.map((note) => (
                   <NoteCard key={note.id} note={note}/>

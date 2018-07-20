@@ -52,8 +52,8 @@ export function saveToLocalStorage(key,data) {
 
 export function firstRun(){
     let data= {
-        version: "0.1.1",
-        releaseNotes: "Added links to pages."
+        version: "0.1.2",
+        releaseNotes: "Added basic comment system"
     };
     if(window.localStorage.getItem("version") < data.version){
         console.log("Version Behind");
