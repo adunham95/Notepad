@@ -1,8 +1,8 @@
 {
-  "name": "notepad",
-  "short_name": "Notepad",
+  "name": "Liquid Notepad",
+  "short_name": "Liquid Notepad",
   "theme_color": "#454ADE",
-  "background_color": "#ECEBE4",
+  "background_color": "#454ADE",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",

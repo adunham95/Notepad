@@ -198,7 +198,7 @@ export class TopNav extends Component{
         return (
             <div className={"navBarTop"}>
                 <Link to={"/"} >
-                    <h2 className={"appName"}>Notepad</h2>
+                    <h2 className={"appName"}>Liquid Notepad</h2>
                 </Link>
                 {this.props.children}
             </div>
