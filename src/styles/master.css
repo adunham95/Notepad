@@ -1115,7 +1115,8 @@ button {
       height: 1em;
       text-align: center;
       margin-top: -0.5em;
-      position: relative; }
+      position: relative;
+      cursor: pointer; }
       .navBarBottom .nav .addProjects .plus {
         position: absolute;
         top: 50%;
