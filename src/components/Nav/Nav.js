@@ -33,8 +33,6 @@ export class BottomNav extends Component {
             console.log("data Changed");
             this.handleNoteChange()
         });
-
-
     }
 
     handleNoteChange() {
@@ -197,12 +195,44 @@ export class BottomNav extends Component {
 export class TopNav extends Component{
     constructor(){
       super();
+      this.state = {
+        projects: [],
+      };
       this.goBack = this.goBack.bind(this);
+      this.handleNoteChange = this.handleNoteChange.bind(this)
     }
 
     goBack(){
       window.history.back();
     }
+
+  componentWillMount(){
+    this.handleNoteChange();
+  }
+
+  componentDidMount() {
+    // Subscribe to changes
+    noteWatcher().on("change", (data)=> {
+      console.log(data);
+      this.handleNoteChange()
+    });
+  }
+
+  handleNoteChange() {
+      console.log("Nav Top Note Handle Change");
+    // Update component state whenever the data source changes
+    getAllNotes().then(
+      (res) => {
+        console.log(res);
+        this.setState({
+          projects: res.rows.filter(item => item.doc.type === "project"),
+        });
+        console.log(this.state.projects);
+      }
+    );
+  }
+
+
 
 
 
@@ -217,7 +247,13 @@ export class TopNav extends Component{
                   <h2>Liquid Notepad</h2>
                 </Link>
               </div>
-                {this.props.children}
+                <div className={"projectList"}>
+                  {/*TODO Reload the page on change*/}
+                  {this.state.projects.map((project) =>(
+                      <Link to={"/project/" + project.id}>{project.doc.name}</Link>
+                  ))}
+                </div>
+
             </div>
         )
     }
