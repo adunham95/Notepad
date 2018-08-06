@@ -1094,10 +1094,11 @@ button {
   background: white;
   width: 100%;
   display: flex;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   box-shadow: 1px 1px 10px black;
   justify-content: space-between;
-  padding: 1em; }
+  padding: 1em;
+  transition: 0.5s; }
   .installBanner.active {
     transform: none; }
   .installBanner .bannerText {
@@ -1205,8 +1206,13 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 5px; }
-  .navBarTop .appName {
-    align-self: flex-start; }
+  .navBarTop .logo {
+    align-self: flex-start;
+    display: flex;
+    align-items: center; }
+    .navBarTop .logo .backButton {
+      cursor: pointer;
+      padding-right: 1em; }
 
 .notesContainer {
   padding-bottom: 5em; }

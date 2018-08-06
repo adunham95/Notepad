@@ -195,12 +195,28 @@ export class BottomNav extends Component {
 }
 
 export class TopNav extends Component{
+    constructor(){
+      super();
+      this.goBack = this.goBack.bind(this);
+    }
+
+    goBack(){
+      window.history.back();
+    }
+
+
+
     render() {
         return (
             <div className={"navBarTop"}>
-                <Link to={"/"} >
-                    <h2 className={"appName"}>Liquid Notepad</h2>
+              <div className={"logo"}>
+                { this.props.backButton &&
+                <div onClick={this.goBack} className={"backButton"}>Go Back</div>
+                }
+                <Link className={"appName"} to={"/"} >
+                  <h2>Liquid Notepad</h2>
                 </Link>
+              </div>
                 {this.props.children}
             </div>
         )

@@ -50,7 +50,7 @@ export class ProjectPage extends Component {
   render() {
       return(
           <div>
-              <TopNav>
+              <TopNav backButton={true}>
 
               </TopNav>
               <div className={"page"}>

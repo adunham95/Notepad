@@ -53,7 +53,7 @@ class NotePage extends Component {
   render() {
     return(
         <div className={"notePage"}>
-            <TopNav>
+            <TopNav backButton={true}>
 
             </TopNav>
             <div className={"page"}>
