@@ -1,3 +1,28 @@
+.installBanner{
+  z-index: 200;
+  position: absolute;
+  background: white;
+  width: 100%;
+  display: flex;
+  transform: translateY(-100%);
+  box-shadow: 1px 1px 10px black;
+  justify-content: space-between;
+  padding: 1em;
+  &.active{
+    transform: none;
+  }
+  .bannerText{
+    font-size: 1.5em;
+  }
+  .bannerAction{
+    background: teal;
+    color: white;
+    padding: 0.5em;
+    text-align: center;
+  }
+}
+
+
 .navBarBottom{
   position: fixed;
   bottom: 0;

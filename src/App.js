@@ -5,6 +5,7 @@ import {BottomNav} from "./components/Nav/Nav";
 import {firstRun} from "./components/functions/functions";
 import NotePage from "./components/Notepage/notepage";
 import {ProjectPage} from "./components/Projectpage/projectpage";
+import {InstallBanner} from "./components/installBanner/installBanner";
 
 class App extends Component {
   componentDidMount(){
@@ -15,6 +16,7 @@ class App extends Component {
     return (
         <Router>
       <div className="App">
+        <InstallBanner/>
           <Switch>
               <Route exact path="/" component={ Home }/>
               <Route path="/note/:id" component={ NotePage }/>

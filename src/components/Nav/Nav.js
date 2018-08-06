@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {getAllNotes, getRandomID, noteWatcher, putNote, saveToLocalStorage} from "../functions/functions";
 import {Link} from "react-router-dom";
+import {InstallBanner} from "../installBanner/installBanner";
 
 export class BottomNav extends Component {
     constructor(props){
