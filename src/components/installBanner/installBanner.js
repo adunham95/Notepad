@@ -12,7 +12,7 @@ export class InstallBanner extends Component {
         <div className={"bannerText"}>
           Add This App to your home screen
         </div>
-        <button className={"bannerAction"} onClick={addToHomeScreen()}>Add to Home Screen</button>
+        <button className={"bannerAction"} onClick={addToHomeScreen}>Add to Home Screen</button>
       </div>
     );
   }

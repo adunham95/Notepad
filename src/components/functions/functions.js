@@ -3,6 +3,15 @@ import PouchDB from "pouchdb";
 let notePadDB = new PouchDB("notePad");
 let deferredPrompt;
 
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  console.log("Before Install Prompt");
+  document.querySelector(".installBanner").classList.add("active")
+});
+
 export function putNote(data, update=false) {
   console.log(data);
   notePadDB.put(data);
@@ -52,17 +61,6 @@ export function saveToLocalStorage(key,data) {
 }
 
 export function firstRun(){
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
-
-    console.log("Before Install Prompt");
-    document.querySelector(".installBanner").classList.add("active")
-  });
-
-
 
     let data= {
         version: "0.1.2",
@@ -141,6 +139,7 @@ export function firstRun(){
 }
 
 export function addToHomeScreen() {
+  console.log("Adding to home screen");
   deferredPrompt.prompt();
   // Wait for the user to respond to the prompt
   deferredPrompt.userChoice
