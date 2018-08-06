@@ -1,144 +1,150 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,500');
-html{
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 300;
-    @media (min-width:$medium){
-        font-size: $defaultFontSize;
-    }
-    @include between($mediumSmall, $medium){
-        font-size: $defaultFontSize * 0.9;
-    }
-    @include between($small, $mediumSmall){
-        font-size: $defaultFontSize * 0.85;
-    }
-    @include smaller($small){
-        font-size: $defaultFontSize * 0.8;
-    }
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,300,500");
+html {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-weight: 300;
+  @media (min-width: $medium) {
+    font-size: $defaultFontSize;
+  }
+  @include between($mediumSmall, $medium) {
+    font-size: $defaultFontSize * 0.9;
+  }
+  @include between($small, $mediumSmall) {
+    font-size: $defaultFontSize * 0.85;
+  }
+  @include smaller($small) {
+    font-size: $defaultFontSize * 0.8;
+  }
 }
-body{
-    -webkit-text-size-adjust: none;
+body {
+  -webkit-text-size-adjust: none;
 }
-
 
 // section title
-h1, .headline{
-    font-size: fontSize("sectionTitle");
-    font-weight: fontWeight("extraLight");
-    line-height: 1.5em;
+h1,
+.headline {
+  font-size: fontSize("sectionTitle");
+  font-weight: fontWeight("extraLight");
+  line-height: 1.5em;
 }
 // section subtitle or tagline
-h2, .sectionTitleLarge{
-    font-weight: fontWeight("extraLight");
-    font-size: fontSize("sectionTag");
-    line-height: 1.5em;
+h2,
+.sectionTitleLarge {
+  font-weight: fontWeight("extraLight");
+  font-size: fontSize("sectionTag");
+  line-height: 1.5em;
 }
 
-h3, .sectionTitle{
-    font-size: fontSize("headline");
-    font-weight: fontWeight("bold");
-    line-height: 1.5em;
+h3,
+.sectionTitle {
+  font-size: fontSize("headline");
+  font-weight: fontWeight("bold");
+  line-height: 1.5em;
 }
 
-h4, .cardTitle{
-    font-size: fontSize("subhead");
-    font-weight: fontWeight("light");
-    letter-spacing: 0.02em;
-    line-height: 1.5em;
-
+h4,
+.cardTitle {
+  font-size: fontSize("subhead");
+  font-weight: fontWeight("light");
+  letter-spacing: 0.02em;
+  line-height: 1.5em;
 }
-h5, .smallBody, .largeLabel{
-    font-size: fontSize("nofocus");
-    line-height: 1.5em;
+h5,
+.smallBody,
+.largeLabel {
+  font-size: fontSize("nofocus");
+  line-height: 1.5em;
 }
-h6, .sectionTitleSmall{
-    font-size: fontSize("body");
-    font-weight: fontWeight("medium");
-    line-height: 1.5em;
-}
-
-.small, small{
-    font-size:0.75em;
-}
-.xsmall{
-    font-size: 0.625em;
+h6,
+.sectionTitleSmall {
+  font-size: fontSize("body");
+  font-weight: fontWeight("medium");
+  line-height: 1.5em;
 }
 
-sup{
-    position: relative;
-    top: -0.3em;
-    font-size: 0.7em;
+.small,
+small {
+  font-size: 0.75em;
+}
+.xsmall {
+  font-size: 0.625em;
 }
 
-p{
-    font-size: fontSize("nofocus");
-    line-height: 1.6em;
-    margin: 0;
-    & + p{
-        margin-top: 0.75em;
+sup {
+  position: relative;
+  top: -0.3em;
+  font-size: 0.7em;
+}
+
+p {
+  font-size: fontSize("nofocus");
+  line-height: 1.6em;
+  margin: 0;
+  & + p {
+    margin-top: 0.75em;
+  }
+  &.focus {
+    font-size: fontSize("focus");
+    line-height: 1.8rem;
+  }
+  &.tiny {
+    font-size: fontSize("tiny");
+    line-height: 1rem;
+  }
+}
+
+.largeLabel {
+  position: relative;
+  &.showDash {
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 1.25rem;
+      height: 0.25rem;
+      background: currentColor;
     }
-    &.focus{
-        font-size: fontSize("focus");
-        line-height: 1.8rem;
-    }
-    &.tiny{
-        font-size: fontSize("tiny");
-        line-height: 1rem;
-    }
+  }
 }
 
-.largeLabel{
-    position: relative;
-    &.showDash{
-        padding-bottom: 0.75rem;
-        margin-bottom: 1rem;
-        &:after{
-            content:"";
-            position: absolute;
-            bottom:0;
-            left:0;
-            width: 1.25rem;
-            height: 0.25rem;
-            background: currentColor;
-        }
-    }
+input,
+textarea {
+  font-family: inherit;
 }
-
-
-input, textarea{
-    font-family: inherit;
-}
-
 
 //text styling
-.block{
-    display:block;
+.block {
+  display: block;
 }
-.bold{
-    font-weight: fontWeight("bold");
+.bold {
+  font-weight: fontWeight("bold");
 }
-.semibold{
-    font-weight: fontWeight("medium");
+.semibold {
+  font-weight: fontWeight("medium");
 }
-.regular{
-    font-weight: fontWeight("normal");
+.regular {
+  font-weight: fontWeight("normal");
 }
-.uppercase{
-    text-transform: uppercase;
-    &.add-spacing{
-        letter-spacing: 0.1em;
-    }
+.uppercase {
+  text-transform: uppercase;
+  &.add-spacing {
+    letter-spacing: 0.1em;
+  }
 }
-.capitalize{
-    text-transform: capitalize;
+.capitalize {
+  text-transform: capitalize;
 }
-
 
 //text align
 $text-align: (
-    left, center, right
+  left,
+  center,
+  right
 );
-@each $value in $text-align{
-    .text-align-#{$value}{
-        text-align: #{$value};
-    }
+@each $value in $text-align {
+  .text-align-#{$value} {
+    text-align: #{$value};
+  }
 }

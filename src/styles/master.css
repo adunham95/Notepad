@@ -53,7 +53,12 @@ h1 {
   margin: 0.67em 0; }
 
 /* mike added */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0; }
 
 /* Grouping content
@@ -418,7 +423,17 @@ template {
   display: none; }
 
 /* mike added */
-h1, h2, h3, h4, h5, h6, p, a, span, input, textarea {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+input,
+textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -518,7 +533,7 @@ img {
     transform: scale(1); }
 
 html {
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
   font-weight: 300; }
   @media (min-width: 1100px) {
     html {
@@ -536,26 +551,34 @@ html {
 body {
   -webkit-text-size-adjust: none; }
 
-h1, .headline {
+h1,
+.headline {
   line-height: 1.5em; }
 
-h2, .sectionTitleLarge {
+h2,
+.sectionTitleLarge {
   line-height: 1.5em; }
 
-h3, .sectionTitle {
+h3,
+.sectionTitle {
   line-height: 1.5em; }
 
-h4, .cardTitle {
+h4,
+.cardTitle {
   letter-spacing: 0.02em;
   line-height: 1.5em; }
 
-h5, .smallBody, .largeLabel {
+h5,
+.smallBody,
+.largeLabel {
   line-height: 1.5em; }
 
-h6, .sectionTitleSmall {
+h6,
+.sectionTitleSmall {
   line-height: 1.5em; }
 
-.small, small {
+.small,
+small {
   font-size: 0.75em; }
 
 .xsmall {
@@ -590,7 +613,8 @@ p {
       height: 0.25rem;
       background: currentColor; }
 
-input, textarea {
+input,
+textarea {
   font-family: inherit; }
 
 .block {
@@ -613,7 +637,8 @@ input, textarea {
 .text-align-right {
   text-align: right; }
 
-a, button {
+a,
+button {
   text-decoration: none;
   color: inherit;
   cursor: pointer; }
@@ -740,7 +765,7 @@ button {
   min-width: 12em; }
 
 .mainNav div.nav-item {
-  padding: .5em;
+  padding: 0.5em;
   cursor: pointer; }
 
 .flex {
@@ -1113,7 +1138,7 @@ button {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  background: #454ADE;
+  background: #454ade;
   color: white;
   border-radius: 30px 30px 0 0;
   transition: 0.5s; }
@@ -1143,7 +1168,8 @@ button {
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%); }
-    .navBarBottom .nav .projectsLink.hidden, .navBarBottom .nav .notesLink.hidden {
+    .navBarBottom .nav .projectsLink.hidden,
+    .navBarBottom .nav .notesLink.hidden {
       display: none; }
   .navBarBottom .navCreate {
     display: flex; }
@@ -1198,7 +1224,7 @@ button {
   position: fixed;
   top: 0;
   width: 100vw;
-  background: #454ADE;
+  background: #454ade;
   color: white;
   box-shadow: 1px 1px 10px black;
   height: 3em;

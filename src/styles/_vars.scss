@@ -2,26 +2,25 @@
 $spacer-unit: 10px;
 
 //screen breakpoints
-$micro      : 321px;
-$tiny       : 425px;
-$smallTiny  : 480px;
-$small      : 700px;
+$micro: 321px;
+$tiny: 425px;
+$smallTiny: 480px;
+$small: 700px;
 $mediumSmall: 800px;
 //$medium     : 1025px;
 $mediumLarge: 970px;
-$medium     : 1100px;
-$large      : 1280px;
-$xlarge     : 1500px;
+$medium: 1100px;
+$large: 1280px;
+$xlarge: 1500px;
 
 //colors
 $colors: (
-    color-lightest: #ffffff,
-	color-lighter: #efefef,
-	color-light: #bcbcbc,
-	color-dark: #999999,
-	color-brandBlue: #1d2449,
-	color-brandBlue-text: #b5b7be,
-
+  color-lightest: #ffffff,
+  color-lighter: #efefef,
+  color-light: #bcbcbc,
+  color-dark: #999999,
+  color-brandBlue: #1d2449,
+  color-brandBlue-text: #b5b7be
 );
 
 $paddingUnit: 1em;
@@ -29,57 +28,57 @@ $shadowSize: 7vh;
 
 /* z-indexes */
 $layers: (
-	layer-popupBox:7000,
-	layer-aboveNav:6000,
-	layer-nav: 5000,
-	layer-subnav: 4000,
-	layer-moduleControls: 2000,
-	layer-topContent:1050,
-	layer-normalContent: 1000,
-	layer-underContent: 900
+  layer-popupBox: 7000,
+  layer-aboveNav: 6000,
+  layer-nav: 5000,
+  layer-subnav: 4000,
+  layer-moduleControls: 2000,
+  layer-topContent: 1050,
+  layer-normalContent: 1000,
+  layer-underContent: 900
 );
 
 /* font sizes */
 $defaultFontSize: 16px;
 $fontSize: (
-    fontSize-sectionTitle   : 3.0em,
-	fontSize-sectionTag     : 3.0em,
-	fontSize-headline       : 1.75em,
-	fontSize-subhead        : 1.25em,
-	fontSize-focus          : 1.125em,
-	fontSize-body           : 1em,
-	fontSize-select         : 0.875em,
-	fontSize-nofocus        : 0.875em,
-	fontSize-nav            : 0.75em,
-	fontSize-instruct       : 0.75em,
-	fontSize-submenu        : 0.75em,
-	fontSize-tiny           : 0.75em,
-	fontSize-label          : 0.625em,
-	fontSize-iconCaption    : 0.625em,
-	fontSize-micro          : 0.625em
+  fontSize-sectionTitle: 3em,
+  fontSize-sectionTag: 3em,
+  fontSize-headline: 1.75em,
+  fontSize-subhead: 1.25em,
+  fontSize-focus: 1.125em,
+  fontSize-body: 1em,
+  fontSize-select: 0.875em,
+  fontSize-nofocus: 0.875em,
+  fontSize-nav: 0.75em,
+  fontSize-instruct: 0.75em,
+  fontSize-submenu: 0.75em,
+  fontSize-tiny: 0.75em,
+  fontSize-label: 0.625em,
+  fontSize-iconCaption: 0.625em,
+  fontSize-micro: 0.625em
 );
 
 /* font weights */
 $fontWeight: (
-    fontWeight-extraLight  : 100,
-	fontWeight-light       : 300,
-	fontWeight-normal      : 400,
-	fontWeight-medium      : 600,
-	fontWeight-bold        : 700,
-	fontWeight-heavy       : 800,
-	fontWeight-black       : 900
+  fontWeight-extraLight: 100,
+  fontWeight-light: 300,
+  fontWeight-normal: 400,
+  fontWeight-medium: 600,
+  fontWeight-bold: 700,
+  fontWeight-heavy: 800,
+  fontWeight-black: 900
 );
 
 $breakpoints: (
-    breakpoint-mobileSmall: 320px,
-	breakpoint-mobileLarge: 450px,
-	breakpoint-tablet: 900px,
-	breakpoint-desktopSmall: 1100px,
-	breakpoint-desktopLarge: 1300px
-    //or name these by what happens at each breakpoint, like mobileNav etc
+  breakpoint-mobileSmall: 320px,
+  breakpoint-mobileLarge: 450px,
+  breakpoint-tablet: 900px,
+  breakpoint-desktopSmall: 1100px,
+  breakpoint-desktopLarge: 1300px
+    /*or name these by what happens at each breakpoint, like mobileNav etc*/
 );
 
 $times: (
-    time-hover: 0.3s,
-	time-transition: 0.5s
+  time-hover: 0.3s,
+  time-transition: 0.5s
 );

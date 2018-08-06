@@ -1,154 +1,149 @@
 //element styles
 
-ul{
-    list-style: none;
-    margin:0;
-    padding:0;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-img{
-    display: block;
+img {
+  display: block;
 }
 
-.hide{
-    display:none;
+.hide {
+  display: none;
 }
-
-
 
 //colors
 $foreground-colors: (
   lightest: lightest,
-   lighter: lighter,
-   light: light,
-   dark: dark,
-   blue: brandBlue,
-   blue-text: brandBlue-text
+  lighter: lighter,
+  light: light,
+  dark: dark,
+  blue: brandBlue,
+  blue-text: brandBlue-text
 );
-@each $item, $value in $foreground-colors{
-    .color-#{$item}{
-        color: color("#{$value}");
-    }
-  .background-#{$item}{
+@each $item, $value in $foreground-colors {
+  .color-#{$item} {
+    color: color("#{$value}");
+  }
+  .background-#{$item} {
     background: color("#{$value}");
   }
 }
 
+.paginationWrap {
+  .pagination {
+    display: inline-block;
+    border-radius: 2em;
+    border: solid 1px color("lighter");
+  }
 
+  li {
+    display: inline-block;
+    padding: 0.75em;
+    padding-bottom: 0.8em;
+    font-size: fontSize("nofocus");
+    cursor: pointer;
 
-.paginationWrap{
-    .pagination{
-        display: inline-block;
-        border-radius: 2em;
-        border: solid 1px color("lighter");
-    }
-
-    li{
-        display: inline-block;
-        padding: 0.75em;
-        padding-bottom: 0.8em;
-        font-size: fontSize("nofocus");
-        cursor: pointer;
-
-        //buttons
-        &.pagination-button{
-            transition: color time("hover");
-            &:not(.disabled){
-                &:hover{
-                    color: color("brand-blue");
-                }
-            }
-            &.disabled{
-                cursor: not-allowed;
-            }
-            //back
-            &.back{
-                padding-left: 1.25em;
-            }
-            //next
-            &.next{
-                padding-right: 1.25em;
-            }
+    //buttons
+    &.pagination-button {
+      transition: color time("hover");
+      &:not(.disabled) {
+        &:hover {
+          color: color("brand-blue");
         }
-
+      }
+      &.disabled {
+        cursor: not-allowed;
+      }
+      //back
+      &.back {
+        padding-left: 1.25em;
+      }
+      //next
+      &.next {
+        padding-right: 1.25em;
+      }
     }
-    .pagination-pages{
-        display: inline-block;
-        li{
-            position: relative;
-            font-family: "Lato", sans-serif;
-            transition: color time("hover");
-            z-index: 1;
-            &:before{
-                content:"";
-                position: absolute;
-                top:50%;
-                left:50%;
-                transform: translate(-50%,-50%) scale(0);
-                width: 1.75em;
-                height: 1.75em;
-                border-radius: 50%;
-                background: color("brand-blue");
-                transition: transform time("hover");
-                z-index: -1;
-            }
-            &:hover{
-                color: white;
-                &:before{
-                    transform: translate(-50%,-50%) scale(0.75);
-                }
-            }
-            &.active{
-                color: white;
-                &:before{
-                    transform: translate(-50%,-50%) scale(1);
-                }
-            }
-            &.itemsHiddenBefore{
-                margin-left: 2em;
-                &:after{
-                    content:"...";
-                    position: absolute;
-                    left: -1.5em;
-                    top:50%;
-                    transform: translateY(-50%);
-                }
-            }
-            &.itemsHiddenAfter{
-                margin-right: 2em;
-                &:after{
-                    content:"...";
-                    position: absolute;
-                    right: -1.5em;
-                    top:50%;
-                    transform: translateY(-50%);
-                }
-            }
+  }
+  .pagination-pages {
+    display: inline-block;
+    li {
+      position: relative;
+      font-family: "Lato", sans-serif;
+      transition: color time("hover");
+      z-index: 1;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 1.75em;
+        height: 1.75em;
+        border-radius: 50%;
+        background: color("brand-blue");
+        transition: transform time("hover");
+        z-index: -1;
+      }
+      &:hover {
+        color: white;
+        &:before {
+          transform: translate(-50%, -50%) scale(0.75);
         }
+      }
+      &.active {
+        color: white;
+        &:before {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      &.itemsHiddenBefore {
+        margin-left: 2em;
+        &:after {
+          content: "...";
+          position: absolute;
+          left: -1.5em;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      &.itemsHiddenAfter {
+        margin-right: 2em;
+        &:after {
+          content: "...";
+          position: absolute;
+          right: -1.5em;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
     }
+  }
 }
 
-.lightbox{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0;
-    transform: scale(0.9);
-    background: color("lightest");
-    pointer-events: none;
-    transition: opacity time("transition"), transform time("transition");
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transform: scale(0.9);
+  background: color("lightest");
+  pointer-events: none;
+  transition: opacity time("transition"), transform time("transition");
 
-    &-close{
-      position: absolute;
-      top: 1em;
-      right: 1em;
-      z-index: layer("moduleControls");
-    }
-    &.active{
-        opacity: 1;
-        pointer-events: all;
-        transform: scale(1);
-    }
+  &-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: layer("moduleControls");
+  }
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1);
+  }
 }

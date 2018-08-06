@@ -1,4 +1,4 @@
-.installBanner{
+.installBanner {
   z-index: 200;
   position: absolute;
   background: white;
@@ -9,13 +9,13 @@
   justify-content: space-between;
   padding: 1em;
   transition: 0.5s;
-  &.active{
+  &.active {
     transform: none;
   }
-  .bannerText{
+  .bannerText {
     font-size: 1.5em;
   }
-  .bannerAction{
+  .bannerAction {
     background: teal;
     color: white;
     padding: 0.5em;
@@ -23,28 +23,27 @@
   }
 }
 
-
-.navBarBottom{
+.navBarBottom {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  background: #454ADE;
+  background: #454ade;
   color: white;
   border-radius: 30px 30px 0 0;
   transition: 0.5s;
-  &.hidden{
+  &.hidden {
     transform: translateY(calc(100% - 4em));
   }
-  .nav{
+  .nav {
     display: flex;
     justify-content: space-around;
     font-size: 2em;
     position: relative;
     height: 2em;
-    .navItem{
+    .navItem {
       padding: 0.5em;
     }
-    .addProjects{
+    .addProjects {
       font-size: 2em;
       background: red;
       color: white;
@@ -56,55 +55,55 @@
       margin-top: -0.5em;
       position: relative;
       cursor: pointer;
-      .plus{
+      .plus {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
       }
     }
-    .projectsLink, .notesLink{
-      &.hidden{
+    .projectsLink,
+    .notesLink {
+      &.hidden {
         display: none;
       }
     }
   }
-  .navCreate{
+  .navCreate {
     display: flex;
-    @include smaller($smallTiny){
+    @include smaller($smallTiny) {
       flex-direction: column;
       font-size: 1.5em;
     }
-    .create{
+    .create {
       width: 50%;
-      @include smaller($smallTiny){
+      @include smaller($smallTiny) {
         width: 100%;
       }
     }
-    .input{
+    .input {
       padding: 1em;
-      @include smaller($smallTiny){
+      @include smaller($smallTiny) {
         padding: 0.25em 0.5em;
       }
-      input{
+      input {
         padding: 0.25em;
         width: 100%;
       }
-      textarea{
+      textarea {
         padding: 0.25em;
         width: 100%;
       }
-      select{
+      select {
         background: white;
         padding: 0.25em;
         width: 100%;
         border-radius: 0;
       }
-      option{
-
+      option {
       }
     }
-    .button{
+    .button {
       font-size: 1.5em;
       padding-right: 0.75em;
       padding-bottom: 0.75em;
@@ -113,37 +112,34 @@
       border: none;
       display: flex;
       justify-content: flex-end;
-      @include smaller($smallTiny){
+      @include smaller($smallTiny) {
         font-size: 1em;
       }
-      button{
+      button {
         align-self: flex-end;
-        .active:after{
+        .active:after {
           transform: none;
-
         }
-
       }
     }
-    .title{
+    .title {
       padding: 0.5em 1em;
-      @include smaller($smallTiny){
+      @include smaller($smallTiny) {
         padding: 0.25em 0.5em;
       }
     }
-    .createProject{
+    .createProject {
     }
-    .createNote{
-
+    .createNote {
     }
   }
 }
 
-.navBarTop{
+.navBarTop {
   position: fixed;
   top: 0;
   width: 100vw;
-  background: #454ADE;
+  background: #454ade;
   color: white;
   box-shadow: 1px 1px 10px black;
   height: 3em;
@@ -151,50 +147,50 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  .logo{
+  .logo {
     align-self: flex-start;
     display: flex;
     align-items: center;
-    .backButton{
+    .backButton {
       cursor: pointer;
       padding-right: 1em;
     }
-    .appName{
+    .appName {
     }
   }
 }
 
-.notesContainer{
+.notesContainer {
   padding-bottom: 5em;
 }
 
-.page{
+.page {
   padding-top: 3.5em;
   padding-bottom: 5em;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
 
-.noteCard{
+.noteCard {
   padding: 1em;
   margin: 0.5em 0;
   transition: 0.5s;
-  .content{
+  .content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    .commentBlocks{
+    .commentBlocks {
       width: 100%;
-      form{
+      form {
         width: 100%;
         display: flex;
         align-items: center;
-        .input{
+        .input {
           width: 75%;
           margin: 0;
           padding: 0.25em 0;
         }
-        .button{
+        .button {
           font-size: 1em;
           margin: 0 auto;
           padding: 0;
@@ -202,18 +198,18 @@
       }
     }
   }
-  .input{
+  .input {
     padding: 1em 0;
     border: 1px solid black;
     margin: 5px 0;
-    input{
+    input {
       padding: 0.25em;
       width: 100%;
     }
-    textarea{
+    textarea {
       padding: 0.25em;
       width: 100%;
-    };
+    }
   }
   .button {
     font-size: 1.5em;
@@ -229,7 +225,6 @@
       align-self: flex-end;
       .active:after {
         transform: none;
-
       }
     }
   }
