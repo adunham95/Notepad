@@ -6,8 +6,8 @@ import {
   putNote
 } from "../functions/functions";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
 export class BottomNav extends Component {
   constructor(props) {
@@ -242,7 +242,7 @@ export class TopNav extends Component {
         <div className={"logo"}>
           {this.props.backButton && (
             <div onClick={this.goBack} className={"backButton"}>
-              <FontAwesomeIcon icon={faChevronCircleLeft} />
+              {/*<FontAwesomeIcon icon={faChevronCircleLeft} />*/}
             </div>
           )}
           <Link className={"appName"} to={"/"}>

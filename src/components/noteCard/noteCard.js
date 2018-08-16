@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { deleteSingleNote, getRandomID, putNote } from "../functions/functions";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCommentAlt } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faTrash, faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 import { Comment } from "../comment/comment";
 
 class NoteCard extends Component {
@@ -71,7 +71,7 @@ class NoteCard extends Component {
           <div className={"actions"}>
             {this.props.note.doc.editable !== false && (
               <div onClick={this.deleteItem}>
-                <FontAwesomeIcon icon={faTrash} />
+                {/*<FontAwesomeIcon icon={faTrash} />*/}
               </div>
             )}
           </div>
@@ -93,7 +93,7 @@ class NoteCard extends Component {
                   </div>
                   <div className={"button"}>
                     <button>
-                      <FontAwesomeIcon icon={faCommentAlt} />
+                      {/*<FontAwesomeIcon icon={faCommentAlt} />*/}
                     </button>
                   </div>
                 </form>
